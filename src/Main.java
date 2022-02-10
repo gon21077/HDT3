@@ -1,3 +1,12 @@
+/**
+ * Main
+ * Objetivo: Intermediar todas las acciones
+ *
+ * @author Juan Gonzalez Campo
+ * @author Paulo Sánchez
+ * @author Pedro Marroquin
+ * @version 1.0 finalizado 09/02/2022
+ */
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;

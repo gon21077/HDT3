@@ -1,3 +1,12 @@
+/**
+ * Bubblesort
+ * Objetivo: Ordenar en Bubble
+ *
+ * @author Juan Gonzalez Campo
+ * @author Paulo Sánchez
+ * @author Pedro Marroquin
+ * @version 1.0 finalizado 09/02/2022
+ */
 public class BubbleSort {
     void bubbleSort(int arr[])
     {

@@ -1,3 +1,12 @@
+/**
+ * Gnomesort
+ * Objetivo: Ordenar en GnomeSort
+ *
+ * @author Juan Gonzalez Campo
+ * @author Paulo Sánchez
+ * @author Pedro Marroquin
+ * @version 1.0 finalizado 09/02/2022
+ */
 import java.util.Arrays;
 
 public class GnomeSort {
