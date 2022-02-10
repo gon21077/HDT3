@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -13,7 +15,7 @@ public class Main {
             int numero = scan.nextInt();
             int arr[] = new int[numero];
             for (int i = 0; i < numero; i++) {
-                arr[i] = rand.nextInt();
+                arr[i] = abs(rand.nextInt());
             }
             System.out.println("Seleccione tipo de sort: \n1. GnomeSort \n2. Merge sort \n3. Quick sort \n4. Radix sort \n5. Bubble sort\n Si desea salir ingrese 0");
             int op = scan.nextInt();

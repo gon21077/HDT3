@@ -1,83 +1,53 @@
 import java.io.*;
 import java.util.*;
-import java.lang.Integer;
+
+import static java.lang.Math.abs;
+
 public class RadixSort {
-    /**
-     * Metodo de ayuda al tipo "merge sort"
-     * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet"
-     // @param list array con los elementos a ordenar
-     // @param lo elemento inicial
-     //@param hi ultimo elemento del array
-     */
-    public void merge(int list[],int l,int m,int r){
-        int n1 = m-l +1;
-        int n2 = r - m;
-
-        int left[] = new int[n1]; //crear arrays temporales
-        int right[] = new int[n2];
-        //copiar los objetos originales
-        for (int i=0;i<n1;i++){
-            left[i] = list[l+i];
+    public int getMax(int a[], int n) {
+        int max = a[0];
+        for(int i = 1; i<n; i++) {
+            if(a[i] > max)
+                max = a[i];
         }
-        for (int j=0;j<n2;j++){
-            right[j] = list[m + 1 + j];
-        }
-        //unir
-        int i = 0;
-        int j = 0;
-        int k = l;
-        while (i<n1 && j<n2){
-            if (left[i]<=right[j]){
-                list[k]=left[i];
-                i++;
-            } else {
-                list[k] = right[j];
-                j++;
-            }
-            k++;
-        }
-        while (i<n1){
-            list[k]=left[i];
-            i++;
-            k++;
-        }
-        while (j<n2){
-            list[k] = right[j];
-            j++;
-            k++;
-        }
-    }
- /**
-     * Metodo para sortear con el tipo "radix sort"
-     * Obtenido y modificado a partir de el archivo "The Sound of Sorting Algorithm Cheat Sheet" y de https://www.geeksforgeeks.org/radix-sort/
-     * @param list array con los elementos a ordenar
-     */
-    public void radixSort (int[] list){
-        int m = getMax(list);
-        for (int e = 1;m/e>0;e*=10){
-            countSort(list, e);
-        }
+        return max; //maximum element from the array
     }
 
-   
+    public void countingSort(int a[], int n, int place) // function to implement counting sort
+    {
+        int[] output = new int[n+1];
+        int[] count = new int[10];
 
-    /**
-     * Metodo de apoyo para el "radix sort"
-     * Obtiene el valor maximo en un array
-     * Obtenido y modificado a partir de https://www.geeksforgeeks.org/radix-sort/
-     * @param list array del que se quiere saber el valor maximo
-     */
-    public int getMax (int[] list){
-        int max = list[0];
-        for (int i =1;i<list.length;i++){
-            if (list[i]>max){
-                max = list[i];
-            }
+        // Calculate count of elements
+        for (int i = 0; i < n; i++)
+            count[abs((a[i] / place) % 10)]++;
+
+        // Calculate cumulative frequency
+        for (int i = 1; i < 10; i++)
+            count[i] += count[i - 1];
+
+        // Place the elements in sorted order
+        for (int i = n - 1; i >= 0; i--) {
+            output[count[abs((a[i] / place) % 10)] - 1] = a[i];
+            count[abs((a[i] / place) % 10)]--;
         }
-        return max;
+
+        for (int i = 0; i < n; i++)
+            a[i] = output[i];
     }
 
+    // function to implement radix sort
+    public void radixsort(int a[], int n) {
+
+        // get maximum element from array
+        int max = getMax(a, n);
+
+        // Apply counting sort to sort elements based on place value
+        for (int place = 1; max / place > 0; place *= 10)
+            countingSort(a, n, place);
+    }
 }
+
 
 
 
